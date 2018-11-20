@@ -1,0 +1,27 @@
+Models:
+- one regression/minimization
+- one neural network comparing pitch to average pitch (maybe averaged per release point?)
+- one neural network comparing pitch to previous pitch (how to figure out sequence of pitches?)
+
+metric of measuring pitch tunneling:
+- distance at tunneling point vs distance at base
+- release position vs tunnel position
+- combine those two somehow?
+
+evaluation metric:
+- own: difference of model prediction to runvalue -> percentage of predictions below threshold
+- MSE
+- combine those two in some way?
+
+-plots?
+
+email: what counts as models? what counts as own evaluation? how are points given? when/where to turn in?
+
+functions:
+- get_data: train/test, other selectors (handedness, ball type); get releasepositionXYZ, tunnelloactionXZ, trajectorylocationXZ
+- get_data_sequential (ordered)
+- calc_diffs: 
+
+
+how many runvalues are not ~0?
+
