@@ -65,14 +65,24 @@ end
 
 #calculate l2 norm squared of two vectors
 @everywhere function euclidean_distance(a, b)
- distance = 0.0 
- for index in 1:size(a, 1) 
-  distance += (a[index]-b[index]) * (a[index]-b[index])
- end
- return distance
+    distance = 0.0 
+    for index in 1:size(a, 1) 
+        distance += (a[index]-b[index]) * (a[index]-b[index])
+    end
+    return distance
+end
+
+#calculate l1 norm of two vectors
+@everywhere function taxicab_distance(a,b)
+    distance = 0.0
+    for index in 1:size(a,1)
+        distance += abs(a[index]-b[index])
+    end
+    return distance
 end
 
 #returns estimate yest from average of k nearest neighbors in Xtrain for a single test point xtest 
+#neighbors are weighted by 1/d where d is the distance to the neighbor
 @everywhere function nearest_neighbor(Xtrain,ytrain,xtest,k=3)
     n,p = size(Xtrain)
     dist = zeros(n)
@@ -82,10 +92,12 @@ end
     
     sortedNeighbors = sortperm(dist)
     yest = 0
+    invdistsum = 0.0 #sum of inverted distances, used for assigning weights
     for j = 1:k
-        yest = yest + ytrain[sortedNeighbors[j]]
+        yest = yest + ytrain[sortedNeighbors[j]]/dist[j]
+        invdistsum += 1.0/dist[j]
     end
-    return yest/k
+    return yest/invdistsum
 end
 
 #compute knn estimate for each sample in Xtest and calculate mse
