@@ -51,7 +51,7 @@ function nn_full(Xtrain,ytrain,Xtest,ytest)
     
     loss_fn = mse
     n = 8
-    m = Chain(Dense(p, n),Dense(n,2*n,relu),Dense(2*n,n,sigmoid),Dense(n,1))  
+    m = Chain(Dense(p, n),Dense(n,n,sigmoid),Dense(n,1))  
     loss(x, y) = loss_fn(m(x), y) 
     evalcb = () -> @show([loss(Xtrain',ytrain')])
     dataset = Base.Iterators.repeated((Xtrain', ytrain'), 500)
