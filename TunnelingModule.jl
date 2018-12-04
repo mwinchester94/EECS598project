@@ -25,7 +25,10 @@ end
 function dataframe2matrix(data)
     X = convert(Array,data[1:end-1])
     Y = parse.(Float64,data[end])
-    return (X, Y)
+    idx = findall(x -> x > -1 && x < 1,Y)
+    percent_lost = 100 - (100*length(idx)/length(Y))
+    @show percent_lost
+    return (X[idx,:], Y[idx])
 end
 
 #get data from database; returns tuple of (X,Y)
