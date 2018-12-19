@@ -15,7 +15,7 @@ evaluation metric:
 
 -plots?
 
-email: what counts as models? what counts as own evaluation? how are points given? when/where to turn in?
+email: what counts as models? what counts as own evaluation? how are points given? when/where to turn in? include instead of module?
 
 functions:
 - get_data: train/test, other selectors (handedness, ball type); get releasepositionXYZ, tunnelloactionXZ, trajectorylocationXZ
@@ -24,4 +24,5 @@ functions:
 
 
 how many runvalues are not ~0?
+neural net with 1 layer same weights as lin reg?
 
